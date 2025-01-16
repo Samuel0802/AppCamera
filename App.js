@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-import { launchImageLibrary } from 'react-native-image-picker';
+import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
 
 export default function App() {
   const [image, setImage] = useState(null);
 
-
+// função usando Callback
   function AbrirAlbum() {
     const options = {
       MediaType: 'photo', //selecionar apenas foto
@@ -31,8 +31,22 @@ export default function App() {
       //Passando Imagem para useState
       setImage(Response.assets[0].uri);
 
-
     })
+  }
+
+ async function AbrirCamera() {
+
+ const options = {
+  MediaType: 'photo', //selecionar apenas foto
+  quality: 1, //melhor qualidade
+  saveToPhotos: true //salvar na galeria
+ }
+
+      const Response = await launchCamera(options)
+
+      console.log(Response.assets);
+      setImage(Response.assets[0].uri);
+
   }
 
   return (
@@ -44,7 +58,7 @@ export default function App() {
           <Text style={styles.txt}>Abrir Album</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={AbrirCamera}>
           <Text style={styles.txt}>Abrir Camera</Text>
         </TouchableOpacity>
 
