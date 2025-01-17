@@ -25,3 +25,9 @@ https://github.com/react-native-image-picker/react-native-image-picker
 
 	<key>NSMicrophoneUsageDescription</key>
 	<string>CaptureMicro</string>
+
+
+
+#### Tela do App
+
+![alt text](image.png)
